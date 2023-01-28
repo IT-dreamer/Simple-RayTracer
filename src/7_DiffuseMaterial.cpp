@@ -6,6 +6,8 @@
 #include "../include/vec3.hxx"
 #include "../include/camera.hxx"
 #include "../include/sphere.hxx"
+#include "../include/lambertian.hxx"
+#include "../include/metal.hxx"
 #include "../include/hitableList.hxx"
 #include "../include/other.h"
 
@@ -14,6 +16,8 @@ using AFei::ray;
 using AFei::sphere;
 using AFei::hitableList;
 using AFei::camera;
+using AFei::lambertian;
+using AFei::metal;
 
 vec3<float> randomInUnitSphere()
 {
@@ -80,8 +84,8 @@ int main(void)
     camera cam(origin, lowerLeftCorner, horizontal, vertical);
 
     hiTabel *list[2];
-    list[0] = new sphere(vec3<float>(0.0f, 0.0f, -1.0f), 0.5);
-    list[1] = new sphere(vec3<float>(0.0f, -50.5f, -1.0f), 50.0f);
+    list[0] = new sphere(vec3<float>(0.0f, 0.0f, -1.0f), 0.5f, new metal(vec3<float>(0.8f, 0.6f, 0.2f)));
+    list[1] = new sphere(vec3<float>(0.0f, -50.5f, -1.0f), 50.0f, new lambertian(vec3<float>(0.8f, 0.8f, 0.0f)));
     hitableList *world = new hitableList(2, list);
 
     int ns = 4;
