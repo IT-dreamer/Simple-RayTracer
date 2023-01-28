@@ -74,7 +74,7 @@ void progressBar(int quantity, int total_amount)
 int main(void)
 {
     std::ofstream outFile;
-    outFile.open("../temp/out.ppm", std::ios::out | std::ios::trunc);
+    outFile.open("../target/out.ppm", std::ios::out | std::ios::trunc);
     int heigth = 400;
     int width = 800;
 
