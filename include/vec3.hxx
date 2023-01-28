@@ -34,7 +34,7 @@ namespace AFei
 
         inline vec3<T> operator *(const vec3<T> &obj);
         inline vec3<T>& operator *=(const vec3<T> &obj);
-        inline vec3<T> operator *(const T n);
+        inline vec3<T> operator *(const T n) const;
         friend inline vec3<T> operator *(T n, vec3<T> obj)
         {
             return obj * n;
@@ -159,7 +159,7 @@ inline AFei::vec3<T>& AFei::vec3<T>::operator*=(const vec3<T> &obj)
 }
 
 template<class T>
-inline AFei::vec3<T> AFei::vec3<T>::operator*(const T n)
+inline AFei::vec3<T> AFei::vec3<T>::operator*(const T n) const
 {
     vec3<T> temp(n * this->x, n * this->y, n * this->z);
     return temp;
