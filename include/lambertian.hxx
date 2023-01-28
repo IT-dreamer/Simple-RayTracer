@@ -6,7 +6,7 @@
 
 namespace AFei
 {
-    class lambertian: public Material
+    class lambertian: public material
     {
     public:
         AFei::vec3<float> albedo;
@@ -17,7 +17,7 @@ namespace AFei
 
     public:
         virtual bool scatter(const AFei::ray<float> &r_in, const hitRecord &rec, AFei::vec3<float> attenuation, AFei::ray<float> &r_out) const;
-        virtual AFei::ray<float> reflect(const hitRecord &rec) const;
+        virtual AFei::ray<float> reflect(const AFei::ray<float> &r_in, const hitRecord &rec) const;
     };
 };
 
@@ -33,12 +33,12 @@ AFei::lambertian::lambertian(const AFei::vec3<float> &lambertian_albedo)
 
 bool AFei::lambertian::scatter(const AFei::ray<float> &r_in, const hitRecord &rec, AFei::vec3<float> attenuation, AFei::ray<float> &r_out) const
 {
-    r_out = reflect(rec);
+    r_out = reflect(r_in, rec);
     attenuation = this->albedo;
     return true;
 }
 
-AFei::ray<float> AFei::lambertian::reflect(const hitRecord &rec) const
+AFei::ray<float> AFei::lambertian::reflect(const AFei::ray<float> &r_in, const hitRecord &rec) const
 {
     auto target = vec3<float>(generateRandom(-1.0f, 1.0f), generateRandom(-1.0f, 1.0f), generateRandom(-1.0f, 1.0f)).normal_vector();
     target += rec.intersectPoint + rec.normal;
