@@ -18,7 +18,7 @@ namespace AFei
         vec3(const vec3<T> &obj);
 
     public:
-        inline vec3<T> operator +(const vec3<T> &obj);
+        inline vec3<T> operator +(const vec3<T> &obj) const;
         inline vec3<T> operator +(const T n);
         inline vec3<T>& operator +=(const T n);
         inline vec3<T>& operator +=(const vec3<T> &obj);
@@ -83,7 +83,7 @@ AFei::vec3<T>::vec3(const vec3<T> &obj)
 }
 
 template<class T>
-inline AFei::vec3<T> AFei::vec3<T>::operator+(const vec3<T> &obj)
+inline AFei::vec3<T> AFei::vec3<T>::operator+(const vec3<T> &obj) const
 {
     vec3<T> temp(this->x + obj.x, this->y + obj.y, this->z + obj.z);
     return temp;
