@@ -7,21 +7,13 @@
 #include "../include/camera.hxx"
 #include "../include/sphere.hxx"
 #include "../include/hitableList.hxx"
+#include "../include/other.h"
 
 using AFei::vec3;
 using AFei::ray;
 using AFei::sphere;
 using AFei::hitableList;
 using AFei::camera;
-
-inline float generateRandom(float left, float right)
-{
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<> dis(left, right);
-    auto res = dis(gen);
-    return (float)res;
-}
 
 vec3<float> randomInUnitSphere()
 {
