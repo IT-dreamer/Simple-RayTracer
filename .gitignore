@@ -1,5 +1,5 @@
 CMakeLists.txt
 build/
 doc/
-temp/
+target/
 README.md
