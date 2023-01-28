@@ -33,7 +33,7 @@ template<class T>
 vec3<float> color(ray<T> &r, hitableList *l)
 {
     hitRecord rec;
-    if(l->hit(r, 0.0f, FLT_MAX, rec))
+    if(l->hit(r, 0.01f, FLT_MAX, rec))
     {
         auto target = randomInUnitSphere();
         target = target + (rec.intersectPoint + rec.normal);
@@ -68,7 +68,7 @@ void progressBar(int quantity, int total_amount)
 int main(void)
 {
     std::ofstream outFile;
-    outFile.open("../temp/out.ppm", std::ios::out | std::ios::trunc);
+    outFile.open("../target/out.ppm", std::ios::out | std::ios::trunc);
     int heigth = 400;
     int width = 800;
 
