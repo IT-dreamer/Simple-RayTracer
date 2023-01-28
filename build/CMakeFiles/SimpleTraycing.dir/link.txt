@@ -1,0 +1,1 @@
+/usr/bin/g++  -g  -rdynamic CMakeFiles/SimpleTraycing.dir/src/8_MetalMaterial.cpp.o CMakeFiles/SimpleTraycing.dir/src/other.cxx.o  -o SimpleTraycing 

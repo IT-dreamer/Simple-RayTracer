@@ -37,13 +37,13 @@ vec3<float> color(ray<T> &r, hitableList *l, int depth)
     {
         ray<float> scattered;
         vec3<float> attenuation;
-        if(depth < 4 && rec.mat_ptr->scatter(r, rec, attenuation, scattered))
+        if(depth < 16 && rec.mat_ptr->scatter(r, rec, attenuation, scattered))
         {
             return attenuation * color(scattered, l, depth + 1);
         }
         else
         {
-            return vec3<float>(0.0f, 0.0f, 0.0f);
+            return vec3<float>(0.1f, 0.1f, 0.1f);
         }
     }
     else
@@ -89,26 +89,29 @@ int main(void)
 
     camera cam(origin, lowerLeftCorner, horizontal, vertical);
 
-    hiTabel *list[3];
-    list[0] = new sphere(vec3<float>(0.0f, 0.0f, -1.0f), 0.5f, new metal(vec3<float>(0.8f, 0.6f, 0.2f)));
-    list[1] = new sphere(vec3<float>(0.0f, -50.5f, -1.0f), 50.0f, new lambertian(vec3<float>(0.8f, 0.8f, 0.0f)));
+    hiTabel *list[4];
+    list[0] = new sphere(vec3<float>(0.0f, 0.0f, -1.0f), 0.5f, new lambertian(vec3<float>(0.8f, 0.3f, 0.3f)));
+    list[1] = new sphere(vec3<float>(0.0f, -100.5f, -1.0f), 100.0f, new lambertian(vec3<float>(0.8f, 0.8f, 0.0f)));
     list[2] = new sphere(vec3<float>(1.0f, 0.0f, -1.0f), 0.5f, new metal(vec3<float>(0.8f, 0.6f, 0.2f)));
-    hitableList *world = new hitableList(3, list);
+    list[3] = new sphere(vec3<float>(-1.0f, 0.0f, -1.0f), 0.5f, new metal(vec3<float>(0.8f, 0.8f, 0.8f)));
+    hitableList *world = new hitableList(4, list);
 
-    int ns = 4;
+    int ns = 32;
 
     for(int i = heigth - 1; i >= 0; i--)
     {
         for(int j = 0; j < width; j++)
         {
             vec3<float> clr(0.0f, 0.0f, 0.0f);
+
             for(int k = 0; k < ns; k++)
             {
                 float u = float(j + generateRandom(0.0f, 1.0f)) / (float)width;
                 float v = float(i + generateRandom(0.0f, 1.0f)) / (float)heigth;
                 auto myRay = cam.get_ray(u, v);
-                clr += color(myRay, world, 0);
-            }
+                clr += color(myRay, world, 0);               
+            }               
+
             clr /= (float)ns;
             clr = vec3<float>((float)sqrt(clr.x), (float)sqrt(clr.y), (float)sqrt(clr.z));
             int ir = int(255.99 * clr.x);

@@ -1,0 +1,3 @@
+/media/afei/Nova_2TB/github/Simple-RayTracer/build/CMakeFiles/rebuild_cache.dir
+/media/afei/Nova_2TB/github/Simple-RayTracer/build/CMakeFiles/edit_cache.dir
+/media/afei/Nova_2TB/github/Simple-RayTracer/build/CMakeFiles/SimpleTraycing.dir

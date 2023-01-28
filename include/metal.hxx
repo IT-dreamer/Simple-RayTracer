@@ -15,7 +15,7 @@ namespace AFei
         metal(const vec3<float> &metal_albedo);
     
     public:
-        virtual bool scatter(const AFei::ray<float> &r_in, const hitRecord &rec, AFei::vec3<float> attenuation, AFei::ray<float> &r_out) const;
+        virtual bool scatter(const AFei::ray<float> &r_in, const hitRecord &rec, AFei::vec3<float> &attenuation, AFei::ray<float> &r_out) const;
         virtual AFei::ray<float> reflect(const AFei::ray<float> &r_in, const hitRecord &rec) const; 
     };
 };
@@ -30,7 +30,7 @@ AFei::metal::metal(const vec3<float> &metal_albedo)
     albedo = metal_albedo;
 }
 
-bool AFei::metal::scatter(const AFei::ray<float> &r_in, const hitRecord &rec, AFei::vec3<float> attenuation, AFei::ray<float> &r_out) const
+bool AFei::metal::scatter(const AFei::ray<float> &r_in, const hitRecord &rec, AFei::vec3<float> &attenuation, AFei::ray<float> &r_out) const
 {
     r_out = reflect(r_in, rec);
     attenuation = this->albedo;

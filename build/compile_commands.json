@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/media/afei/Nova_2TB/github/Simple-RayTracer/build",
+  "command": "/usr/bin/g++   -I/media/afei/Nova_2TB/github/Simple-RayTracer/include  -g   -Wall -Werror -std=gnu++17 -o CMakeFiles/SimpleTraycing.dir/src/8_MetalMaterial.cpp.o -c /media/afei/Nova_2TB/github/Simple-RayTracer/src/8_MetalMaterial.cpp",
+  "file": "/media/afei/Nova_2TB/github/Simple-RayTracer/src/8_MetalMaterial.cpp"
+},
+{
+  "directory": "/media/afei/Nova_2TB/github/Simple-RayTracer/build",
+  "command": "/usr/bin/g++   -I/media/afei/Nova_2TB/github/Simple-RayTracer/include  -g   -Wall -Werror -std=gnu++17 -o CMakeFiles/SimpleTraycing.dir/src/other.cxx.o -c /media/afei/Nova_2TB/github/Simple-RayTracer/src/other.cxx",
+  "file": "/media/afei/Nova_2TB/github/Simple-RayTracer/src/other.cxx"
+}
+]

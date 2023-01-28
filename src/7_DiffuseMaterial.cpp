@@ -24,7 +24,7 @@ vec3<float> randomInUnitSphere()
     vec3<float> res;
     do
     {
-        res = 2.0f * vec3<float>(generateRandom(-1.0f, 1.0f), generateRandom(-1.0f, 1.0f), generateRandom(-1.0f, 1.0f)) - vec3<float>(1.0f, 1.0f, 1.0f);
+        res = 2.0f * vec3<float>(generateRandom(0.0f, 1.0f), generateRandom(0.0f, 1.0f), generateRandom(0.0f, 1.0f)) - vec3<float>(1.0f, 1.0f, 1.0f);
     } while (res.length() > 1);
     return res;
 }
@@ -35,14 +35,14 @@ vec3<float> color(ray<T> &r, hitableList *l)
     hitRecord rec;
     if(l->hit(r, 0.0f, FLT_MAX, rec))
     {
-        auto target = randomInUnitSphere().normal_vector();
+        auto target = randomInUnitSphere();
         target = target + (rec.intersectPoint + rec.normal);
         ray<T> reflect_ray(rec.intersectPoint, (target - rec.intersectPoint).normal_vector());
         return color(reflect_ray, l) * 0.5f;
     }
     else
     {
-        float t = 0.5f * r.direction.y + 1.0f;
+        float t = 0.5f * (r.direction.y + 1.0f);
         return vec3<float>(1.0f, 1.0f, 1.0f) * (1.0f - t) + vec3<float>(0.5f, 0.7f, 1.0f) * t;
     }
 }
@@ -84,8 +84,8 @@ int main(void)
     camera cam(origin, lowerLeftCorner, horizontal, vertical);
 
     hiTabel *list[2];
-    list[0] = new sphere(vec3<float>(0.0f, 0.0f, -1.0f), 0.5f, new metal(vec3<float>(0.8f, 0.6f, 0.2f)));
-    list[1] = new sphere(vec3<float>(0.0f, -50.5f, -1.0f), 50.0f, new lambertian(vec3<float>(0.8f, 0.8f, 0.0f)));
+    list[0] = new sphere(vec3<float>(0.0f, 0.0f, -1.0f), 0.5f);
+    list[1] = new sphere(vec3<float>(0.0f, -50.5f, -1.0f), 50.0f);
     hitableList *world = new hitableList(2, list);
 
     int ns = 4;

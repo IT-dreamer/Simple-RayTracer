@@ -23,7 +23,7 @@ public:
 class material
 {
 public:
-    virtual bool scatter(const AFei::ray<float> &r_in, const hitRecord &rec, AFei::vec3<float> attenuation, AFei::ray<float> &r_out) const = 0;
+    virtual bool scatter(const AFei::ray<float> &r_in, const hitRecord &rec, AFei::vec3<float> &attenuation, AFei::ray<float> &r_out) const = 0;
     virtual AFei::ray<float> reflect(const AFei::ray<float> &r_in, const hitRecord &rec) const = 0;
 };
 

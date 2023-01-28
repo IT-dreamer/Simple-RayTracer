@@ -14,6 +14,7 @@ namespace AFei
     
     public:
         sphere();
+        sphere(vec3<float> sphereCenter, float sphereRadius);
         sphere(vec3<float> sphereCenter, float sphereRadius, material *sphere_material);
         sphere(const sphere &obj);
     
@@ -27,6 +28,13 @@ AFei::sphere::sphere()
 {
     this->center = vec3<float>(0.0f, 0.0f, 0.0f);
     this->radius = 0.0f;
+    this->mat_ptr = nullptr;
+}
+
+AFei::sphere::sphere(vec3<float> sphereCenter, float sphereRadius)
+{
+    this->center = sphereCenter;
+    this->radius = sphereRadius;
     this->mat_ptr = nullptr;
 }
 
