@@ -237,7 +237,7 @@ inline void AFei::vec3<T>::normalization()
 template<class T>
 inline AFei::vec3<T> AFei::vec3<T>::normal_vector()
 {
-    vec3<T> temp = this->operator/(this->length());
+    vec3<T> temp = *this / this->length();
     return temp;
 }
 
