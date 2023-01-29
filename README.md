@@ -13,5 +13,5 @@ This project is a learning of what is ray tracing and how to achieve, from displ
 The cpp files in the src file correspond to different chapter exercises, just specify the `MAIN_FILE` in the CMakeLists.txt to the target file.
 
 # How to check ppm file
-You can use the [Web PPM Viewer](https://0xc0de.fr/webppm/).The ppm file are stored in the temp file. Because it's compiling with **/src/7_DiffuseMaterial.cpp**, you will see  
+You can use the [Web PPM Viewer](https://0xc0de.fr/webppm/).The ppm file are stored in the temp file. Because it's compiling with **/src/8_MetalMaterial.cpp**, you will see  
 ![](/doc/result.png)
