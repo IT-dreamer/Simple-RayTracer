@@ -19,16 +19,6 @@ using AFei::camera;
 using AFei::lambertian;
 using AFei::metal;
 
-vec3<float> randomInUnitSphere()
-{
-    vec3<float> res;
-    do
-    {
-        res = 2.0f * vec3<float>(generateRandom(-1.0f, 1.0f), generateRandom(-1.0f, 1.0f), generateRandom(-1.0f, 1.0f)) - vec3<float>(1.0f, 1.0f, 1.0f);
-    } while (res.length() > 1);
-    return res;
-}
-
 template<class T>
 vec3<float> color(ray<T> &r, hitableList *l, int depth)
 {
