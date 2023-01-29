@@ -27,6 +27,7 @@ namespace AFei
             return obj + n;
         }
 
+        inline vec3<T> operator -();
         inline vec3<T> operator -(const vec3<T> &obj);
         inline vec3<T> operator -(const T n);
         inline vec3<T>& operator -=(const T n);
@@ -111,6 +112,12 @@ inline AFei::vec3<T>& AFei::vec3<T>::operator+=(const vec3<T> &obj)
     this->y = (T)this->y + obj.y;
     this->z = (T)this->z + obj.z;
     return *this;
+}
+
+template<class T>
+inline AFei::vec3<T> AFei::vec3<T>::operator-()
+{
+    return vec3<T>(-this->x, -this->y, -this->z);
 }
 
 template<class T>
