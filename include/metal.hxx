@@ -52,9 +52,8 @@ bool AFei::metal::scatter(const AFei::ray<float> &r_in, const hitRecord &rec, AF
 AFei::ray<float> AFei::metal::reflect(const AFei::ray<float> &r_in, const hitRecord &rec) const
 {
     auto r_in_temp = r_in.direction;
-    r_in_temp = -r_in_temp;
-    auto r_b = rec.normal * dot(r_in_temp, rec.normal);
-    auto r_out = ray<float>(rec.intersectPoint, (r_in_temp + 2 * r_b).normal_vector());
+    auto r_out_dir = r_in_temp - 2.0f * dot(r_in_temp, rec.normal) * rec.normal;
+    auto r_out = ray<float>(rec.intersectPoint, r_out_dir.normal_vector());
     if(f > 0.0f)
     {
         r_out.direction = r_out.direction + randomInUnitSphere() * this->f;
