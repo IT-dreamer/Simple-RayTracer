@@ -2,6 +2,7 @@
 #define METAL_HXX_
 
 #include "hitable.h"
+#include "other.h"
 
 namespace AFei
 {
@@ -9,10 +10,12 @@ namespace AFei
     {
     public:
         vec3<float> albedo;
+        float f;    //模糊偏移参数
 
     public:
         metal();
         metal(const vec3<float> &metal_albedo);
+        metal(const vec3<float> &metal_albedo, const float metal_f);
     
     public:
         virtual bool scatter(const AFei::ray<float> &r_in, const hitRecord &rec, AFei::vec3<float> &attenuation, AFei::ray<float> &r_out) const;
@@ -23,11 +26,19 @@ namespace AFei
 AFei::metal::metal()
 {
     albedo = vec3<float>(0.0f, 0.0f, 0.0f);
+    f = 0.0f;
 }
 
 AFei::metal::metal(const vec3<float> &metal_albedo)
 {
     albedo = metal_albedo;
+    f = 0.0f;
+}
+
+AFei::metal::metal(const vec3<float> &metal_albedo, const float metal_f)
+{
+    albedo = metal_albedo;
+    metal_f > 1.0f ? this->f = 1.0f : this->f = metal_f;
 }
 
 bool AFei::metal::scatter(const AFei::ray<float> &r_in, const hitRecord &rec, AFei::vec3<float> &attenuation, AFei::ray<float> &r_out) const
@@ -41,11 +52,18 @@ bool AFei::metal::scatter(const AFei::ray<float> &r_in, const hitRecord &rec, AF
 AFei::ray<float> AFei::metal::reflect(const AFei::ray<float> &r_in, const hitRecord &rec) const
 {
     auto r_in_temp = r_in.direction;
-    r_in_temp.x = -r_in_temp.x;
-    r_in_temp.y = -r_in_temp.y;
-    r_in_temp.z = -r_in_temp.z;
+    r_in_temp = -r_in_temp;
     auto r_b = rec.normal * dot(r_in_temp, rec.normal);
     auto r_out = ray<float>(rec.intersectPoint, (r_in_temp + 2 * r_b).normal_vector());
-    return r_out;
+    if(f > 0.0f)
+    {
+        r_out.direction = r_out.direction + randomInUnitSphere() * this->f;
+        r_out.direction.normalization();
+        return r_out;
+    }
+    else
+    {
+        return r_out;
+    }
 }
 #endif

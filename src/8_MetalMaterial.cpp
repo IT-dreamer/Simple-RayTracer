@@ -82,8 +82,8 @@ int main(void)
     hiTabel *list[4];
     list[0] = new sphere(vec3<float>(0.0f, 0.0f, -1.0f), 0.5f, new lambertian(vec3<float>(0.8f, 0.3f, 0.3f)));
     list[1] = new sphere(vec3<float>(0.0f, -100.5f, -1.0f), 100.0f, new lambertian(vec3<float>(0.8f, 0.8f, 0.0f)));
-    list[2] = new sphere(vec3<float>(1.0f, 0.0f, -1.0f), 0.5f, new metal(vec3<float>(0.8f, 0.6f, 0.2f)));
-    list[3] = new sphere(vec3<float>(-1.0f, 0.0f, -1.0f), 0.5f, new metal(vec3<float>(0.8f, 0.8f, 0.8f)));
+    list[2] = new sphere(vec3<float>(1.0f, 0.0f, -1.0f), 0.5f, new metal(vec3<float>(0.8f, 0.6f, 0.2f), 0.9f));
+    list[3] = new sphere(vec3<float>(-1.0f, 0.0f, -1.0f), 0.5f, new metal(vec3<float>(0.8f, 0.8f, 0.8f), 0.1f));
     hitableList *world = new hitableList(4, list);
 
     int ns = 100;
