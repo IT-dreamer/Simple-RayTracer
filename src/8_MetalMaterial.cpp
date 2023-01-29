@@ -33,7 +33,7 @@ template<class T>
 vec3<float> color(ray<T> &r, hitableList *l, int depth)
 {
     hitRecord rec;
-    if(l->hit(r, 0.0f, FLT_MAX, rec))
+    if(l->hit(r, 0.001f, FLT_MAX, rec))
     {
         ray<float> scattered;
         vec3<float> attenuation;
@@ -43,7 +43,7 @@ vec3<float> color(ray<T> &r, hitableList *l, int depth)
         }
         else
         {
-            return vec3<float>(0.1f, 0.1f, 0.1f);
+            return vec3<float>(0.0f, 0.0f, 0.0f);
         }
     }
     else
@@ -96,7 +96,7 @@ int main(void)
     list[3] = new sphere(vec3<float>(-1.0f, 0.0f, -1.0f), 0.5f, new metal(vec3<float>(0.8f, 0.8f, 0.8f)));
     hitableList *world = new hitableList(4, list);
 
-    int ns = 32;
+    int ns = 100;
 
     for(int i = heigth - 1; i >= 0; i--)
     {
