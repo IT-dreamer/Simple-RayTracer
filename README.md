@@ -3,7 +3,6 @@ This project is a learning of what is ray tracing and how to achieve, from displ
 
 # Usage
 
-    $ cd /yourpath
     $ git clone https://github.com/IT-dreamer/Simple-RayTracer.git
     $ cd Simple-RayTracer
     $ mkdir build
