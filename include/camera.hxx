@@ -18,6 +18,8 @@ namespace AFei
         camera(float camera_fov, float camera_aspect);
         camera(vec3<float> camera_origin, vec3<float> camera_lower_left_corner, \
         vec3<float> camera_horizontal, vec3<float> camera_vertical);
+        camera(vec3<float> lookfrom, vec3<float> lookat, vec3<float> up, float vfov, \
+        float aspect);
     
     public:
         ray<float> get_ray(float u, float v);
@@ -50,6 +52,21 @@ AFei::camera::camera(vec3<float> camera_origin, vec3<float> camera_lower_left_co
     this->lower_left_corner = camera_lower_left_corner;
     this->horizontal = camera_horizontal;
     this->vertical = camera_vertical;
+}
+
+AFei::camera::camera(vec3<float> lookfrom, vec3<float> lookat, vec3<float> up, float vfov, float aspect)
+{
+    vec3<float> u, v, w;
+    float theta = vfov * M_PI / 180.0f;
+    float half_height = tan(theta / 2.0);
+    float half_width = aspect * half_height;
+    origin = lookfrom;
+    w = (lookfrom - lookat).normal_vector();
+    u = cross(up, w).normal_vector();
+    v = cross(w, u);
+    lower_left_corner = origin - half_width * u - half_height * v- w;
+    horizontal = 2.0f * half_width * u;
+    vertical = 2.0f * half_height * v;
 }
 
 AFei::ray<float> AFei::camera::get_ray(float u, float v)
