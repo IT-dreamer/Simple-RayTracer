@@ -105,9 +105,9 @@ bool AFei::dielectirc::refract(const AFei::vec3<float> &r_in_dir, const AFei::ve
     if(cos_theta_prime > 0)
     {
         auto r_in_normal_temp = r_in_normal;
-        //auto r_in_dir_temp = r_in_dir;
-        //r_out_dir = -r_in_normal_temp * sqrt(cos_theta_prime) + ni_over_nt * (r_in_dir_temp - r_in_normal * cos_theta);
-        r_out_dir = -r_in_normal_temp * sqrt(cos_theta_prime);
+        auto r_in_dir_temp = r_in_dir;
+        r_out_dir = -r_in_normal_temp * sqrt(cos_theta_prime) + ni_over_nt * (r_in_dir_temp - r_in_normal * cos_theta);
+        //r_out_dir = -r_in_normal_temp * sqrt(cos_theta_prime);
         r_out_dir.normalization();
         return true;
     }
