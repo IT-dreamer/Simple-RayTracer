@@ -5,5 +5,6 @@
 
 float generateRandom(float left, float right);
 AFei::vec3<float> randomInUnitSphere();
+AFei::vec3<float> randomInUnitDisk();
 
 #endif
